@@ -3,15 +3,15 @@
 ;;Create an abstract network of breeds vertexes, paths if and only if :
 
 ;;  -  paths-layer-data is a gis polyline layer
-;;  -  global var cluster-treshold, remaining-links, remaining-vertexes has been defined (not initialised, no pb)
+;;  -  global var cluster-treshold, remaining-links, remaining-vertices has been defined (not initialised, no pb)
 ;;  -  breed vertexes, undirected-link-breed paths and breed abstract-gis-pathshas been defined, with corresponding variables, that means in code :
 
-;;         breed [vertexes vertex]
+;;         breed [vertices vertex]
 ;;         breed [abstract-gis-paths abstract-gis-path]
 
 ;;         abstract-gis-paths-own [
 ;;             gis-feature
-;;             vertexes-list
+;;             vertices-list
 ;;          ]
 
 ;;         undirected-link-breed [paths path]
@@ -98,6 +98,14 @@ end
 
 
 
+;;;;;;;
+;; This shitty function seems deprecated
+;; -> impossible to use in large complexity cases
+;; Should write a new one using fast clustering and intersection after
+;;
+;; Try to improve complexity of "intersecting" function
+;;;;;;;
+
 to create-network
   set remaining-links []
   
@@ -121,12 +129,23 @@ to create-network
     ]
   ]
   
-  local-clusterize
+  ;local-clusterize
+  
+  set remaining-vertices to-list vertices
+  while [length remaining-vertices > 0][
+    let v first remaining-vertices set remaining-vertices remove v remaining-vertices ask v [set color blue]
+    ask v [fusion-neighbors]
+  ]
+  
+  
+  
+  
+  
   
   set remaining-links to-list paths
   while [length remaining-links > 0] [
-    show length remaining-links
-    let l one-of remaining-links set remaining-links remove l remaining-links ask l [set color blue set thickness 0.3]
+    ;show length remaining-links
+    let l one-of remaining-links set remaining-links remove l remaining-links ask l [set color blue set thickness path-thickness]
     let inter intersecting l
     if inter != nobody [
       let i intersection l inter
@@ -140,11 +159,11 @@ to create-network
     
   ]
   
-  local-clusterize
+  ;local-clusterize
   
   
   ask vertices [set color blue]
-  ask paths [set color blue set thickness 0.3]
+  ask paths [set color blue set thickness path-thickness]
   
 end
 
@@ -199,13 +218,15 @@ to fusion [v]
   ]
 end
 
-to-report intersecting [l] ;;hard complexity :(
+to-report intersecting [l]
+  ;;hard complexity :(
+  ;;ok improved by selecting eligible links before the loop !
   let res nobody
   let found? false
-  let r-links to-list paths with [self != l]
+  let r-links to-list paths with [self != l and intersection self l != []]
   while [not found? and length r-links > 0][
     let l1 one-of r-links set r-links remove l1 r-links
-    if intersection l l1 != [] and not common-extremity? l l1 [set res l1 set found? true]
+    if not common-extremity? l l1 [set res l1 set found? true]
   ]
   report res
 end
@@ -217,7 +238,7 @@ end
 
 
 to new-vertex
-  set size 0.5 set shape "circle" set color grey
+  set size vertex-size set shape "circle" set color grey
 end
 
 to new-abstract-gis-path
@@ -225,7 +246,7 @@ to new-abstract-gis-path
 end
 
 to new-path
-  set thickness 0.2 set color grey
+  set thickness path-thickness set color blue
 end
 
 
@@ -246,7 +267,7 @@ end
 
 to snapshot
   nw:set-snapshot vertices paths
-  ask paths [let dd 0 let e2 end2 ask end1 [set dd distance e2 ] set path-length dd]
+  ask paths [let dd 0 let e2 end2 ask end1 [set dd distance e2 ] set path-length dd * real-patch-size]
 end
 
 ;;beware, need snapshot before !

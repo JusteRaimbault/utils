@@ -18,6 +18,12 @@ to-report implode [l]
   report res
 end
 
+;;concats all elements of the list in one string inserting the delimiter between them
+to-report implode-with-delimiter [l delimiter]
+  let res ""
+  foreach l [ifelse ? = last l [set res word res ?][set res (word res ? delimiter)]]
+  report res
+end
 
 
 to-report replace [string motif new]
