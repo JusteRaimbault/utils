@@ -54,11 +54,11 @@ to create-network-vertices-clustering
   ;;try a simple local clusterize?
 
   set remaining-vertices to-list vertices
-  reset-ticks
+  ;reset-ticks
   while [length remaining-vertices > 0][
     let v first remaining-vertices set remaining-vertices remove v remaining-vertices ask v [set color blue]
     ask v [fusion-neighbors]
-    tick
+    ;tick
   ]
   
   
@@ -238,7 +238,8 @@ end
 
 
 to new-vertex
-  set size vertex-size set shape "circle" set color grey
+  set size vertex-size
+  set shape "circle" set color grey
 end
 
 to new-abstract-gis-path

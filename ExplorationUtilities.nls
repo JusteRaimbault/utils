@@ -4,6 +4,11 @@
 ;;
 ;; as generic as possible, to be called in several situations
 ;;
+;; Needs :
+;;  - setup-exploration procedure
+;;  - go-for-one-time-step
+;;  - total-time-steps variable
+;;
 ;;;;;;;;;;;;;;;;;;;
 
 
@@ -51,7 +56,7 @@ to grid-exploration-time-series [n-repets export-time-step param-names-and-bound
       output-print word "Completed " (100 * i / length plan)
     set i i + 1
     ]
-  csv-export res ";" output-file
+  config-csv-export res ";" output-file
   
 end
 
@@ -111,7 +116,7 @@ end
 ;;;;;;;;;;;;;;;
 
 ;;format for values of outputs and params will be the same as for only params !
-to csv-export [config separator filename]
+to config-csv-export [config separator filename]
   ;;first get name of vars to write first line
   ;;rq: we suppose that export is done in same order !!!
   let first-line ""

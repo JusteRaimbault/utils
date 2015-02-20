@@ -50,3 +50,45 @@ end
 to-report incr-item [i l val]
   report replace-item i l (item i l + val)
 end
+
+
+to-report concatenate [lists]
+  let res []
+  foreach lists [
+    foreach ? [
+      set res lput ? res 
+    ] 
+  ]  
+  report res
+end
+
+
+
+;;;;;;;;;;
+;; generalized min,max,sum
+;;;;;;;;;;
+
+; note : would be better to report \infty for gen-min (generally used for comparisons) but does not exists
+to-report gen-min [l]
+  ifelse length l = 0 [
+    report 0
+  ][
+     report min l
+  ]
+end
+
+to-report gen-max [l]
+  ifelse length l = 0 [
+    report 0
+  ][
+     report max l
+  ]
+end
+
+to-report gen-sum [l]
+  ifelse length l = 0 [
+    report 0
+  ][
+     report sum l
+  ]
+end

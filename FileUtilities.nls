@@ -62,3 +62,26 @@ to export-plot-as-scilab [plotname filename var1name var2name]
   
 end
 
+
+
+
+
+;;;;;;
+;; list csv export
+;;;;;;
+
+to lists-csv-export [lists header separator filename]
+  ;;first get name of vars to write first line
+  ;;rq: we suppose that export is done in same order !!!
+  let first-line ""
+  foreach header [set first-line word first-line ? if ? != last header [set first-line word first-line separator]]
+  print-in-file filename first-line
+  foreach lists [
+    let line ""
+    let lst last ?
+    foreach ? [set line word line ? if ? != lst [set line word line separator]]
+    print-in-file filename line
+  ] 
+end
+
+
