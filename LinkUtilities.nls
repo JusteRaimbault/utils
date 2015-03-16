@@ -3,6 +3,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
+
+
 ;;Get the "print" of a link
 ;;ie the patches he intersects
 ;; @reports list of patches intersecting link
@@ -31,6 +33,7 @@ to-report footprint
 end
 
 
+;;;;;;;;
 ;; reports a two-item list of x and y coordinates, or an empty
 ;; list if no intersection is found
 ;; © Code copied from NL examples
