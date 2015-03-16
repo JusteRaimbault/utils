@@ -92,3 +92,11 @@ to-report gen-sum [l]
      report sum l
   ]
 end
+
+to-report gen-mean [l]
+  ifelse length l = 0 [
+    report 0
+  ][
+     report mean l
+  ]
+end
