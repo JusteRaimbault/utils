@@ -31,3 +31,12 @@ to-report replace [string motif new]
   repeat n [ifelse item i string = motif [set res word res new][set res word res item i string] set i i + 1]
   report res
 end
+
+
+
+
+to-report as-char-list [string]
+  let res [] let i 0
+  repeat length string [set res lput item i string res set i i + 1]
+  report res
+end
