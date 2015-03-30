@@ -148,7 +148,7 @@ to create-network
     let l one-of remaining-links set remaining-links remove l remaining-links ask l [set color blue set thickness path-thickness]
     let inter intersecting l
     if inter != nobody [
-      let i intersection l inter
+      let i intersection-with-link l inter
       let x first i let y first but-first i
       create-vertices 1 [new-vertex setxy x y create-path-with [end1] of l [set remaining-links lput self remaining-links]
       create-path-with [end2] of l [set remaining-links lput self remaining-links ]
@@ -223,7 +223,7 @@ to-report intersecting [l]
   ;;ok improved by selecting eligible links before the loop !
   let res nobody
   let found? false
-  let r-links to-list paths with [self != l and intersection self l != []]
+  let r-links to-list paths with [self != l and intersection-with-link self l != []]
   while [not found? and length r-links > 0][
     let l1 one-of r-links set r-links remove l1 r-links
     if not common-extremity? l l1 [set res l1 set found? true]
@@ -267,7 +267,7 @@ end
 ;;snapshot and link distance done in other function, so done just 1 time (efficiency!)
 
 to snapshot
-  nw:set-snapshot vertices paths
+  nw:set-context vertices paths
   ask paths [let dd 0 let e2 end2 ask end1 [set dd distance e2 ] set path-length dd * real-patch-size]
 end
 
