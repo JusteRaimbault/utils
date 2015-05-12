@@ -18,5 +18,6 @@ Classified by ``purpose''.
 </ul>
 
 #Files description
-...
+
+See each package Readme/doc.
 
