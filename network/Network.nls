@@ -4,10 +4,46 @@
 ;;;;;;;;;;;;;;;;;;;;;;
 
 
+
+
+;;
+; Planarize a network, by simply "flattening the bridges"
+;
+;  Necessarily in O(#(edges-agentset)^2) as have to checkall intersections between links.
+to planarize-network [vertices-agentset edges-agentset]
+  
+  let remaining-edges to-list edges-agentset
+  
+  ; get breeds
+  let vertices-breed agentset-uniform-breed vertices-agentset
+  ; rq : with hatch the vertices-breed should not be needed ?
+  let links-breed agentset-uniform-singular-breed edges-agentset
+  
+  while [length remaining-edges > 0][
+    let current-edge first remaining-edges set remaining-edges remove-item 0 remaining-edges
+    foreach remaining-edges [
+       let inter intersection-with-link ? current-edge
+       if length inter > 0 [
+          let t11 [end1] of ? let t12 [end2] of ? let t21 [end1] of current-edge let t22 [end2] of current-edge
+          ; create the new intersection and connects it
+          let new-int nobody
+          run (word "create-" vertices-breed " 1 [set new-int self]")
+          
+          ; TODO
+          
+       ]
+    ]
+  ]
+  
+end
+
+
 ;;;;;;;;;;;;;
 ;; Connexify nw following std algo 
 ;;
-;; Uses provided turtles and links agentsets
+;; Uses provided turtles and links agentsets.
+;
+;  Note : resulting nw is not necessary planar ! -> planification primitive, better be separated for more flexibility<
 ;;;;;;;;;;;;
 to connexify-network [vertices-agentset edges-agentset]
   nw:set-context vertices-agentset edges-agentset

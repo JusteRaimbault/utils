@@ -10,13 +10,23 @@
 ;  rq : becomes gore through nlextension using more than the api. Q : surely not expected to call that - philosophy problem ? is it dangerous ?  
 ;
 ; @requires context extension
-to-report my-breed
+to-report my-singular-breed
   foreach context:breed-singular-names [
      if runresult (word "is-" ? "? self") [report ?]
   ]
   report "TURTLE"
 end
 
+;;
+; Get agents breed as a string (plural)
+
+; @requires context extension
+to-report my-breed
+  foreach context:breed-names [
+     if runresult (word "is-" ? "? self") [report ?]
+  ]
+  report "TURTLES"
+end
 
 
 
