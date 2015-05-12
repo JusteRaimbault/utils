@@ -5,7 +5,9 @@
 ;; as generic as possible, to be called in several situations
 ;;
 ;; Needs :
+;;  - setup procedure (overall setup)
 ;;  - setup-exploration procedure
+;;  - setup-final-indicators procedure
 ;;  - go-for-one-time-step
 ;;  - total-time-steps variable
 ;;
