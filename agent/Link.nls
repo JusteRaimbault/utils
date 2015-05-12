@@ -1,7 +1,21 @@
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Link Utilities
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+
+
+
+
+
+
+
+to-report my-link-breed
+  foreach context:link-breed-singular-names [
+     if runresult (word "is-" ? "? self") [report ?]
+  ]
+  report "LINK"
+end
 
 
 

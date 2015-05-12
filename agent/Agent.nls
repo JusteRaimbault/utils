@@ -4,11 +4,28 @@
 
 
 
+;;
+; Get agents breed as a string.
+;
+;  rq : becomes gore through nlextension using more than the api. Q : surely not expected to call that - philosophy problem ? is it dangerous ?  
+;
+; @requires context extension
+to-report my-breed
+  foreach context:breed-singular-names [
+     if runresult (word "is-" ? "? self") [report ?]
+  ]
+  report "TURTLE"
+end
+
+
+
+
+
 ;;;;;;;;;
 ;; Report myself at n-th level (or nobody if does not exists)
 ;;; 
-;;; DOES NOT WORKS -- command called by run executed in a separate workspace -- solution : write agent in temp file ? horrible...
-
+;;; DOES NOT WORK -- command called by run executed in a separate workspace -- solution : write agent in temp file ? horrible...
+;
 to-report my-nth-self [level]
   ;; use catch of exception to go until required level (catch runtime error signifying that does not exists)
   ;carefully [

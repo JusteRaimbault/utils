@@ -5,6 +5,51 @@
 
 
 
+
+;;
+; Finds the breeds of an agentset
+;  report list of all singular breeds.
+to-report agentset-singular-breed [agentset]
+  let res []
+   ask agentset [
+     if is-turtle? self [set res lput my-breed res]
+     if is-link? self [set res lput my-link-breed res]
+   ]
+   report remove-duplicates res
+end
+
+;;
+; Finds the breeds of an agentset
+;  report breed if uniform, turtle otherwise
+to-report agentset-uniform-singular-breed [agentset]
+  let breeds agentset-singular-breed agentset
+  ;if length breeds = 0 [report "turtle"] ; nobody is turtle
+  ifelse length breeds = 1 [report item 0 breeds][report "TURTLE"]
+end
+
+
+;;;
+;; Finds the breeds of an agentset
+;;  report list of all singular breeds.
+;to-report agentset-breed [agentset]
+;  
+;end
+;
+;;;
+;; Finds the breeds of an agentset
+;;  report breed if uniform, turtle otherwise
+;to-report agentset-uniform-breed [agentset]
+;  
+;end
+
+
+
+
+
+
+
+
+
 ;;remove a particular agent from agentset
 ;; dirty in complexity ! (goes through all agents)
 ;;  Returned type is that of the agentset (logical)

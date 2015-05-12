@@ -1,4 +1,4 @@
-extensions [gis nw]
+extensions [gis nw context]
 
 __includes [
   "GISNetwork.nls"
@@ -7,14 +7,14 @@ __includes [
   "../misc/ListUtilities.nls"
   "../agent/Link.nls"
   "../math/EuclidianDistanceUtilities.nls"
+  "../agent/Agent.nls"
+  "../agent/Link.nls"
+  "../agent/AgentSet.nls"
   
   ;; test : network
   "../network/Network.nls"
   
 ]
-
-
-
 
 
 
@@ -36,6 +36,30 @@ edges-own [
   edge-length
 ]
 ;;;;;;;;;;;;;;;;;;;;;;;
+
+
+
+;;;;; tests ;;;;;;;;
+undirected-link-breed [roads road]
+undirected-link-breed [pathways pathway]
+
+
+to test-nw-conn
+  ca crt 20 [setxy random-xcor random-ycor]
+  ask n-of 5 turtles[ create-road-with one-of other turtles [set thickness 0.5 set color red] create-pathway-with one-of other turtles[set thickness 0.2 set color green] ]
+end
+
+
+
+
+
+
+
+
+
+
+
+
 @#$#@#$#@
 GRAPHICS-WINDOW
 13

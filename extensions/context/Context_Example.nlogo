@@ -1,7 +1,22 @@
 extensions [context]
 
+__includes [
+  "../../agent/Agent.nls" 
+]
+
+
 breed [sheeps sheep]
 breed [sigycops sigycop]
+
+
+
+to test-my-breed
+  ca
+  crt 5
+  create-sheeps 5
+  create-sigycops 5
+  ask turtles [show my-breed]
+end
 @#$#@#$#@
 GRAPHICS-WINDOW
 210

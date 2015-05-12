@@ -9,9 +9,11 @@
 ;;
 ;; Uses provided turtles and links agentsets
 ;;;;;;;;;;;;
-to connexify-global-network [vertices-agentset edges-agentset]
+to connexify-network [vertices-agentset edges-agentset]
   nw:set-context vertices-agentset edges-agentset
   let clusters nw:weak-component-clusters
+  
+  let links-breed agentset-uniform-singular-breed edges-agentset
   
   while [length clusters > 1] [
     let c1 first clusters
@@ -25,7 +27,7 @@ to connexify-global-network [vertices-agentset edges-agentset]
     ]
     ask mc1 [
       ; create link : need to find the breed of used links
-      create-road-with mc2 [new-road]
+      run (word "create-" links-breed "-with mc2")
     ]
     set clusters nw:weak-component-clusters
   ]
