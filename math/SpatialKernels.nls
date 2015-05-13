@@ -1,0 +1,12 @@
+
+;;;;;;;;;;;;
+;; SpatialKernels
+;;;;;;;;;;;;
+
+
+;;
+; Generates a spatial distribution for the given patch variable, following the specified kernel
+; with given parameters.
+to apply-monocentric-kernel [kernel-type kernel-dispersion kernel-max patch-variable-name center-patch]
+  
+end
