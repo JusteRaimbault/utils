@@ -6,6 +6,15 @@
 
 
 
+
+;;
+to create-density-controlled-network
+  
+end
+
+
+
+
 ;;
 ;  Create an Network of breeds vertices, edges from a gis polyline layer.
 ;    Given a spatial clustering threshold parameter, aggregates vertices in the file with distance smaller than threshold (non-deterministic)

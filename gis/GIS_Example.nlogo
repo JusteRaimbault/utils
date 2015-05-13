@@ -4,12 +4,13 @@ __includes [
   "GISNetwork.nls"
   
   ;; dependancies : Link and List utils
-  "../misc/ListUtilities.nls"
+  ;"/${env:CN_HOME}/Models/Governance/MetropolSim/governement.nls" ; test for env ar : does not work! 
   "../agent/Link.nls"
   "../math/EuclidianDistanceUtilities.nls"
   "../agent/Agent.nls"
   "../agent/Link.nls"
   "../agent/AgentSet.nls"
+  "../misc/List.nls"
   
   ;; test : network
   "../network/Network.nls"
@@ -58,8 +59,6 @@ end
 
 
 
-
-
 @#$#@#$#@
 GRAPHICS-WINDOW
 13
@@ -87,6 +86,71 @@ GRAPHICS-WINDOW
 1
 ticks
 30.0
+
+MONITOR
+1151
+13
+1208
+58
+turtles
+count turtles
+17
+1
+11
+
+MONITOR
+1211
+13
+1268
+58
+links
+count links
+17
+1
+11
+
+BUTTON
+1145
+69
+1268
+102
+create network
+ca\ncreate-network layer threshold
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+INPUTBOX
+1146
+118
+1287
+178
+layer
+data/roads_123.shp
+1
+0
+String
+
+SLIDER
+1145
+188
+1317
+221
+threshold
+threshold
+0
+1
+1
+0.01
+1
+NIL
+HORIZONTAL
 
 @#$#@#$#@
 ## WHAT IS IT?
