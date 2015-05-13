@@ -95,10 +95,6 @@ end
 
 
 
-to test-planarize
-  ca crt 100 ask turtles [setxy random-xcor random-ycor create-link-with one-of other turtles]
-  planarize-network turtles links
-end
 
 
 
