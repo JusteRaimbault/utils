@@ -9,6 +9,8 @@ extensions[matrix]
 __includes [
    "List.nls" 
    "Matrix.nls"
+   
+   "../gui/Display.nls"
 ]
 @#$#@#$#@
 GRAPHICS-WINDOW
