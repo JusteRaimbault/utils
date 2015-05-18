@@ -100,3 +100,38 @@ to-report gen-mean [l]
      report mean l
   ]
 end
+
+
+
+;;;;;;;;;;;;;;;
+;; index of min, max
+;;;;;;;;;;;;;;;
+
+
+;;
+; reports index of min (last in case of multiple)
+to-report min-index [l]
+  let mi first l let res 0 let rem but-first l let i 1
+  while [length rem > 0][
+    if first rem <= mi [set mi first rem set res i]
+    set rem but-first rem set i i + 1
+  ]
+  report res
+end
+
+
+;;
+; index of max
+to-report max-index [l]
+  let ma first l let res 0 let rem but-first l let i 1
+  while [length rem > 0][
+    if first rem >= ma [set ma first rem set res i]
+    set rem but-first rem set i i + 1
+  ]
+  report res
+end
+
+
+
+
+

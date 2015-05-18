@@ -1,27 +1,11 @@
 
-; example for spatial kernels
+;;;;;;;;;;;;;;;;;
+;; List utils examples
+;;;;;;;;;;;;;;;;;
 
-
-__includes[
- "SpatialKernels.nls" 
+__includes [
+   "List.nls" 
 ]
-
-
-patches-own [
-  var 
-]
-
-;;;;;;;;;;;;;;;
-;; tests
-;;;;;;;;;;;;;;;
-
-;; test poisson
-to test-poisson
-  apply-monocentric-kernel "poisson" 10 1 "var" one-of patches
-  ; color patches
-  let mi min [var] of patches let ma max [var] of patches
-  ask patches [set pcolor scale-color blue var mi ma]
-end
 @#$#@#$#@
 GRAPHICS-WINDOW
 210
@@ -37,8 +21,8 @@ GRAPHICS-WINDOW
 1
 1
 0
-0
-0
+1
+1
 1
 -16
 16
