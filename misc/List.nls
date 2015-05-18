@@ -134,4 +134,31 @@ end
 
 
 
+;;;;;;;
+;; scalar product
+;;;;;;;
+
+
+;;
+; Computes scalar product between two lists
+;  if different lengths, take minimum
+to-report scalar-product [l1 l2]
+  let res 0
+  let n min list (length l1) (length l2) let i 0
+  repeat n [
+    set res res + (item i l1 * item i l2)
+    set i i + 1
+  ]
+  report res
+end
+
+
+
+
+
+
+
+
+
+
 

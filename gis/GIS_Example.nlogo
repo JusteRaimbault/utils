@@ -58,7 +58,6 @@ end
 
 
 
-
 @#$#@#$#@
 GRAPHICS-WINDOW
 13
@@ -127,10 +126,10 @@ NIL
 1
 
 INPUTBOX
-1146
-118
-1287
-178
+1140
+226
+1281
+286
 layer
 data/roads_123.shp
 1
@@ -138,19 +137,36 @@ data/roads_123.shp
 String
 
 SLIDER
-1145
-188
-1317
-221
+1139
+296
+1311
+329
 threshold
 threshold
 0
 1
-1
+0.4
 0.01
 1
 NIL
 HORIZONTAL
+
+BUTTON
+1145
+107
+1289
+140
+create network bis
+ca\ncreate-network-vertices-clustering layer threshold\n;planarize-network vertices edges
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
 
 @#$#@#$#@
 ## WHAT IS IT?
