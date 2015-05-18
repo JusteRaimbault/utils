@@ -3,8 +3,12 @@
 ;; List utils examples
 ;;;;;;;;;;;;;;;;;
 
+extensions[matrix]
+
+
 __includes [
    "List.nls" 
+   "Matrix.nls"
 ]
 @#$#@#$#@
 GRAPHICS-WINDOW

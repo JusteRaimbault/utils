@@ -1,0 +1,12 @@
+
+;;;;;;;;;;;;;;;
+;; Matrix.nls
+;;;;;;;;;;;;;;;
+
+to-report matrix-get-sparse-row [m row col-inds]
+  let res []
+  foreach col-inds [
+    set res lput matrix:get m row ? res 
+  ]
+  report res
+end
