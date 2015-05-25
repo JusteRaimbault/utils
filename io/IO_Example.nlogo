@@ -1,70 +1,15 @@
-extensions [gis nw context]
 
 __includes [
-  "GISNetwork.nls"
-  
-  ;; dependancies : Link and List utils
-  ;"/${env:CN_HOME}/Models/Governance/MetropolSim/governement.nls" ; test for env ar : does not work! 
-  "../agent/Link.nls"
-  "../math/EuclidianDistanceUtilities.nls"
-  "../agent/Agent.nls"
-  "../agent/Link.nls"
-  "../agent/AgentSet.nls"
-  "../misc/List.nls"
-  
-  ;; test : network
-  "../network/Network.nls"
-  
+  "Timer.nls" 
 ]
-
-
-
-
-;;;;;;;;;;;;;;;;;;;;;;
-;; Global defs for GIS Network algos
-;;  -> include that in model for primitives to work
-;;;;;;;;;;;;;;;;;;;;;;
-globals[remaining-links remaining-vertices]
-breed [vertices vertex]
-breed [abstract-gis-edges abstract-gis-edge]
-abstract-gis-edges-own [
-  gis-feature
-  vertices-list
-]
-undirected-link-breed [edges edge]
-edges-own [
-  ; owned var for length
-  edge-length
-]
-;;;;;;;;;;;;;;;;;;;;;;;
-
-
-
-;;;;; tests ;;;;;;;;
-undirected-link-breed [roads road]
-undirected-link-breed [pathways pathway]
-
-
-to test-nw-conn
-  ca crt 20 [setxy random-xcor random-ycor]
-  ask n-of 5 turtles[ create-road-with one-of other turtles [set thickness 0.5 set color red] create-pathway-with one-of other turtles[set thickness 0.2 set color green] ]
-end
-
-
-
-
-
-
-
-
 @#$#@#$#@
 GRAPHICS-WINDOW
-13
+210
 10
-1102
-704
-41
-25
+649
+470
+16
+16
 13.0
 1
 10
@@ -72,100 +17,18 @@ GRAPHICS-WINDOW
 1
 1
 0
-0
-0
 1
--41
-41
--25
-25
+1
+1
+-16
+16
+-16
+16
 0
 0
 1
 ticks
 30.0
-
-MONITOR
-1151
-13
-1208
-58
-turtles
-count turtles
-17
-1
-11
-
-MONITOR
-1211
-13
-1268
-58
-links
-count links
-17
-1
-11
-
-BUTTON
-1145
-69
-1268
-102
-create network
-ca\ncreate-network layer threshold
-NIL
-1
-T
-OBSERVER
-NIL
-NIL
-NIL
-NIL
-1
-
-INPUTBOX
-1140
-226
-1281
-286
-layer
-data/roads_123.shp
-1
-0
-String
-
-SLIDER
-1139
-296
-1311
-329
-threshold
-threshold
-0
-1
-0.4
-0.01
-1
-NIL
-HORIZONTAL
-
-BUTTON
-1145
-107
-1289
-140
-create network bis
-ca\ncreate-network-vertices-clustering layer threshold\n;planarize-network vertices edges
-NIL
-1
-T
-OBSERVER
-NIL
-NIL
-NIL
-NIL
-1
 
 @#$#@#$#@
 ## WHAT IS IT?
