@@ -9,11 +9,11 @@ Classified by ``purpose''.
 <li>agent : agent set, turtle, link related primitives</li>
 <li>exploration : model exploration basics</li>
 <li>games</li>
-<li>his : easing of his data import</li>
+<li>gis : easing of gis data import</li>
 <li>gui : plotting/view</li>
 <li>io : log and file read/write</li>
-<li>math</li>
-<li>misc</li>
+<li>math : various maths</li>
+<li>misc : mainly data structure (list, table etc) functions</li>
 <li>network : generic network algorithms</li>
 </ul>
 
