@@ -56,6 +56,8 @@ to-report footprint
         fd 0.05
         if patch-here != current-patch [set res lput current-patch res set current-patch patch-here]
       ]
+      ; do not forget to add the last one !
+      set res lput current-patch res
       die
     ]
   ]
