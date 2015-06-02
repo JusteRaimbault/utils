@@ -46,7 +46,7 @@ end
 ;
 ;
 ;
-to create-network-vertices-clustering [edges-layer-file cluster-treshold]
+to create-network-vertices-clustering [edges-layer-file threshold]
 
   ; note : do not call clear-all here, for more flexibility in use of the primitive.
 
@@ -84,7 +84,7 @@ to create-network-vertices-clustering [edges-layer-file cluster-treshold]
   ;reset-ticks
   while [length remaining-vertices > 0][
     let v first remaining-vertices set remaining-vertices remove v remaining-vertices ask v [set color blue]
-    ask v [fusion-neighbors cluster-treshold]
+    ask v [fusion-neighbors threshold]
     ;tick
   ] 
   
