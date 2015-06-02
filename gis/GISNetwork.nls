@@ -110,7 +110,7 @@ end
 ;; Try to improve complexity of "intersecting" function
 ;;;;;;;
 
-to create-network [edges-layer-file cluster-threshold]
+to create-network [edges-layer-file threshold]
 
   let edges-layer-data gis:load-dataset edges-layer-file
   
@@ -143,7 +143,7 @@ to create-network [edges-layer-file cluster-threshold]
   set remaining-vertices to-list vertices
   while [length remaining-vertices > 0][
     let v first remaining-vertices set remaining-vertices remove v remaining-vertices ask v [set color blue]
-    ask v [fusion-neighbors cluster-threshold]
+    ask v [fusion-neighbors threshold]
   ]
   
   
@@ -182,9 +182,9 @@ end
 ;;
 ; aux function called by create network
 ; @visibility private
-to fusion-neighbors [cluster-treshold]
+to fusion-neighbors [threshold]
 
-   let neigh other vertices in-radius cluster-treshold
+   let neigh other vertices in-radius threshold
    if count neigh > 0 [
     let n nobody
     let x mean [xcor] of neigh
@@ -208,12 +208,12 @@ end
 
 
 ;;particular reduction of network by clustering. (adapted to the network creation procedure and to the real world gis network we work with)
-to local-clusterize [cluster-treshold]
+to local-clusterize [threshold]
     ;;deleting local clusters
   set remaining-vertices to-list vertices
   while [length remaining-vertices > 0][
     let v one-of remaining-vertices set remaining-vertices remove v remaining-vertices ask v [set color blue]
-    let neigh vertices with [member? self remaining-vertices and distance v < cluster-treshold and self != v]
+    let neigh vertices with [member? self remaining-vertices and distance v < threshold and self != v]
     ifelse count neigh > 0 [ask one-of neigh [fusion v]]
     
     
@@ -221,7 +221,7 @@ to local-clusterize [cluster-treshold]
     ;;added this requirement to have quite in each case a connex network, because then two very close link will connect although they don't intersect at the small scale
     
     
-    [ask v [let ml my-edges let x xcor let y ycor let ps edges with [not member? self ml and distance-to-point x y < cluster-treshold] if count ps > 0 [ask one-of ps [
+    [ask v [let ml my-edges let x xcor let y ycor let ps edges with [not member? self ml and distance-to-point x y < threshold] if count ps > 0 [ask one-of ps [
           let p coord-of-projection-of x y let xx first p let yy first but-first p let e1 end1 let e2 end2 ask e1 [hatch-vertices 1 [
               setxy xx yy
               create-edge-with e1 [set thickness 1] ; thickness for debug purposes at the beginning

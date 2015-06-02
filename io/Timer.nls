@@ -15,5 +15,5 @@ to-report rtoc
 end
 
 to toc
-  output-print (word "Ellapsed time : " (timer / 1000) " sec")
+  output-print (word "Ellapsed time : " timer " sec")
 end
