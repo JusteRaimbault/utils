@@ -21,7 +21,7 @@ end
 
 ;;
 ; by default DEBUG level if not set
-to log-debug [msg]
+to debug [msg]
   if log-level = "DEBUG" or log-level = 0 [
     output-print msg
   ]
