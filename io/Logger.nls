@@ -22,7 +22,16 @@ end
 ;;
 ; by default DEBUG level if not set
 to debug [msg]
-  if log-level = "DEBUG" or log-level = 0 [
+  ; ouput in any case
+  ;if log-level = "DEBUG" or log-level = 0 [
     output-print (word "(DEBUG) " msg)
-  ]
+  ;]
+end
+
+
+to verbose [msg]
+    ; output if log >= VERBOSE
+    if log-level = "VERBOSE" or log-level = "DEBUG" or log-level = 0 [
+       output-print (word "(VERBOSE) " msg)
+    ]    
 end
