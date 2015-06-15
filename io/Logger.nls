@@ -20,7 +20,7 @@ end
 
 
 to log-debug [msg]
-  if log-level = "debug" [
+  if log-level = "DEBUG" [
     output-print msg
   ]
 end

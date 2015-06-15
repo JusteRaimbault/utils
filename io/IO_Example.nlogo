@@ -1,6 +1,14 @@
 
 __includes [
-  "Timer.nls" 
+  
+  "Timer.nls"
+  
+  "Logger.nls"
+   
+]
+
+globals [
+  log-level 
 ]
 @#$#@#$#@
 GRAPHICS-WINDOW
