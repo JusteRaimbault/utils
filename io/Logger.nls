@@ -23,6 +23,6 @@ end
 ; by default DEBUG level if not set
 to debug [msg]
   if log-level = "DEBUG" or log-level = 0 [
-    output-print msg
+    output-print (word "[DEBUG] " msg)
   ]
 end
