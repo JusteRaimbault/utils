@@ -22,10 +22,9 @@ end
 ;;
 ; by default DEBUG level if not set
 to debug [msg]
-  ; ouput in any case
-  ;if log-level = "DEBUG" or log-level = 0 [
+  if log-level = "DEBUG" or log-level = 0 [
     output-print (word "(DEBUG) " msg)
-  ;]
+  ]
 end
 
 
