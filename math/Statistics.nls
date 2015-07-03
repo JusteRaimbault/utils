@@ -19,3 +19,11 @@ to-report hist [x nbreaks]
     report []
   ]
 end
+
+
+
+; quantile function
+to-report quantile [x q]
+  if length x = 0 [report 0]
+  report item (floor (q * length x)) (sort x)
+end
