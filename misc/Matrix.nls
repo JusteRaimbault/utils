@@ -3,10 +3,30 @@
 ;; Matrix.nls
 ;;;;;;;;;;;;;;;
 
-to-report matrix-get-sparse-row [m row col-inds]
+;;
+; Get sparse row given column indexes
+to-report matrix:get-sparse-row [m row col-inds]
   let res []
   foreach col-inds [
     set res lput matrix:get m row ? res 
   ]
   report res
+end
+
+;;
+; Get sparse column
+to-report matrix:get-sparse-column [m column row-inds]
+  let res []
+  foreach row-inds [
+    set res lput matrix:get m column ? res 
+  ]
+  report res
+end
+
+
+
+;;
+; Sparse submatrix
+to-report matrix:sparse-submatrix
+  
 end
