@@ -27,6 +27,17 @@ end
 
 ;;
 ; Sparse submatrix
-to-report matrix:sparse-submatrix
-  
+;
+; @reports matrix
+to-report matrix:sparse-submatrix [m rows columns]
+  let list-res []
+  foreach rows [
+    let i ?
+    let r []
+    foreach columns [
+      set r lput matrix:get m i ? r 
+    ]
+    set list-res lput r list-res
+  ]
+  report matrix:from-row-list list-res
 end
