@@ -64,7 +64,7 @@ public class TestGSPerfs {
 	
 	public static void main(String[] args) {
 		//System.out.println(gridGraph(15).getEdgeCount());
-		Graph g = gridGraph(40);
+		Graph g = gridGraph(20);
 		//for(Node n : g.getNodeSet()){System.out.println(n.getId());}
 		//for(String s:g.getNode(1).getAttributeKeySet()){System.out.println(s);}
 		//System.out.println(g.getNode(1).getAttribute("xy").toString());
