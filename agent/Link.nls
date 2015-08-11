@@ -50,7 +50,7 @@ to-report footprint
     hatch 1 [
       set heading towards e2
       let current-patch patch-here
-      while [current-patch != obj][
+      while [current-patch != obj and can-move? 0.05][
         ;;can't be blocked at one side of the world
         ;;because would be on finish !
         fd 0.05
