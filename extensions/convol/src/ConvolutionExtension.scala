@@ -2,7 +2,7 @@ import org.nlogo.{ agent, api, nvm }
 import api.Syntax._
 import api.ScalaConversions._  // implicits
 
-class SampleScalaExtension extends api.DefaultClassManager {
+class ConvolutionExtension extends api.DefaultClassManager {
   def load(manager: api.PrimitiveManager) {
     manager.addPrimitive("convolution", Convol)
     manager.addPrimitive("test", Test)
@@ -13,8 +13,10 @@ object Convol extends api.DefaultReporter {
   override def getSyntax =reporterSyntax(Array(ListType,ListType), ListType)
 
   def report(args: Array[api.Argument], context: api.Context): AnyRef = {
-     val x = args(0).getList.map(_.asInstanceOf[Array[Double]]).toArray
-     val k = args(1).getList.map(_.asInstanceOf[Array[Double]]).toArray
+
+
+     val x = args(0).getList.map(_.asInstanceOf[org.nlogo.api.LogoList].toArray.map(_.asInstanceOf[Double])).toArray
+     val k = args(1).getList.map(_.asInstanceOf[org.nlogo.api.LogoList].toArray.map(_.asInstanceOf[Double])).toArray
      // convol y = x * k
      val y = Convolution.convolution2D(x,k)
      y.toLogoList
