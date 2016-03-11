@@ -1,7 +1,21 @@
+;extensions [table]
 
 ;;;;;;;;;;;;;
 ;; Table utilities
 ;;;;;;;;;;;;;
+
+
+;;
+; Get table values as list
+to-report table-values [table]
+  let res []
+  foreach table:keys table [
+    set res lput table:get table ? res 
+  ]
+  report res
+end
+
+
 
 ;;
 ; Gets a value from a hashtable with symmetric keys, i.e. couples for which order has no importance.

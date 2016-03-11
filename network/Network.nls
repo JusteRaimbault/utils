@@ -3,6 +3,14 @@
 ;; Generic NW functions
 ;;;;;;;;;;;;;;;;;;;;;;
 
+extensions [nw context gradient]
+
+__includes [
+ "../agent/AgentSet.nls" 
+ "../misc/List.nls"
+ "../agent/Link.nls"
+ "../agent/Agent.nls"
+]
 
 
 
@@ -108,6 +116,7 @@ end
 to connexify-network [vertices-agentset edges-agentset]
   nw:set-context vertices-agentset edges-agentset
   let clusters nw:weak-component-clusters
+  let #-new-links length clusters - 1
   
   let links-breed agentset-uniform-singular-breed edges-agentset
   
@@ -123,7 +132,8 @@ to connexify-network [vertices-agentset edges-agentset]
     ]
     ask mc1 [
       ; create link : need to find the breed of used links
-      run (word "create-" links-breed "-with mc2")
+      ; to color : final number of new links if #-initial clusters - 1
+      run (word "create-" links-breed "-with mc2"); [set color gradient:scale (list extract-rgb red extract-rgb yellow) (#-new-links - (length clusters)) 0 #-new-links]")
     ]
     set clusters nw:weak-component-clusters
   ]
