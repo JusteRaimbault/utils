@@ -4,6 +4,58 @@
 ;;;;;;;;;;;;;;;
 
 
+
+to matrix:set-diag [m l]
+  let i 0
+  repeat length matrix:get-row m 0 [
+    matrix:set m i i item i l
+    set i i + 1
+  ]
+end
+
+
+to matrix:set-diag-scalar [m s]
+  ; for a square matrix
+  let i 0
+  repeat length matrix:get-row m 0 [
+    matrix:set m i i s
+    set i i + 1
+  ]
+end
+
+
+;;
+; set a submatrix, in the same fashion as the primitive matrix:submatrix (i.e. r1 <= r < r2 and c1 <= c < c2 - RQ : r2,c2 not needed !)
+to matrix:set-submatrix [m r c submat]
+  let i 0
+  repeat length matrix:get-column submat 0 [
+    let j 0
+    repeat length matrix:get-row submat 0 [
+      matrix:set m (r + i) (c + j) (matrix:get submat i j)
+      set j j + 1
+    ]
+    set i i + 1
+  ]
+end
+
+
+
+;;
+; transforms a list into a column matrix
+to-report matrix:as-column-matrix [l]
+  report matrix:from-row-list map [(list ?)] l
+end
+
+
+;;
+; sum of elements of a matrix
+to-report matrix:sum [m]
+  report sum map sum matrix:to-row-list m
+end
+
+
+
+
 ;;
 ; create a diagonal matrix from a list
 to-report matrix:make-diag [l]

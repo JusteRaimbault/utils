@@ -2,12 +2,24 @@
 ;;read and write file utilities
 
 __includes [
-  "../misc/String.nls" 
+  "../misc/String.nls"
 ]
 
 ;;;
 ; Reading
 ;;;
+
+
+
+to-report read-csv [filename delimiter]
+  let rows read-file filename
+  let row-list []
+  foreach rows [
+    set row-list lput (explode delimiter ?) row-list
+  ]
+  report row-list
+end
+
 
 
 ;;
@@ -31,7 +43,7 @@ to-report read-csv-as-matrix [file delimiter]
   foreach rows [
     set row-list lput (explode delimiter ?) row-list
   ]
-  report matrix:from-row-list row-list 
+  report matrix:from-row-list row-list
 end
 
 ;;
@@ -43,7 +55,7 @@ to-report read-numeric-csv-as-matrix [file delimiter]
   foreach rows [
     set row-list lput (map read-from-string (explode delimiter ?)) row-list
   ]
-  report matrix:from-row-list row-list 
+  report matrix:from-row-list row-list
 end
 
 
@@ -53,7 +65,7 @@ to-report read-numeric-csv-as-row-list [file delimiter]
   foreach rows [
     set row-list lput (map read-from-string (explode delimiter ?)) row-list
   ]
-  report row-list 
+  report row-list
 end
 
 
@@ -75,8 +87,8 @@ to-report read-table [file delimiter]
     ; if not two elements, row is not well formatted ( !! NO DELIM in values ¡¡ )
     if length t = 2 [
       ;table:put res (item 0 t) (item 0 (map transformation (list item 1 t)))
-      table:put res (item 0 t) (item 1 t)  
-    ] 
+      table:put res (item 0 t) (item 1 t)
+    ]
   ]
   report res
 end
@@ -108,14 +120,14 @@ to export-plot-as-scilab [plotname filename var1name var2name]
   print-in-file filename word word word var1name "=[];" var2name "=[];"
 
   export-plot plotname tempfile
-  
+
 ;  let data-list read-file tempfile
-;  
+;
 ;  show data-list
-;  
+;
 ;  let data? false
 ;  let i 1
-;  
+;
 ;  foreach data-list [
 ;    ifelse data? [
 ;      let l explode "," ?
@@ -128,10 +140,10 @@ to export-plot-as-scilab [plotname filename var1name var2name]
 ;      print-in-file filename word "//" ?
 ;    ]
 ;  ]
-;  
-;  
+;
+;
 ;  file-delete tempfile
-  
+
 end
 
 
@@ -155,7 +167,5 @@ to lists-csv-export [lists header separator filename]
     let j 1
     foreach ? [set line word line ? if j != row-length [set line word line separator] set j j + 1]
     print-in-file filename line
-  ] 
+  ]
 end
-
-
