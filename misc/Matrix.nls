@@ -3,12 +3,26 @@
 ;; Matrix.nls
 ;;;;;;;;;;;;;;;
 
+
+;;
+; create a diagonal matrix from a list
+to-report matrix:make-diag [l]
+  let n length l
+  let res matrix:make-constant n n 0
+  let i 0
+  foreach l [matrix:set res i i ? set i i + 1]
+  report res
+end
+
+
+
+
 ;;
 ; Get sparse row given column indexes
 to-report matrix:get-sparse-row [m row col-inds]
   let res []
   foreach col-inds [
-    set res lput matrix:get m row ? res 
+    set res lput matrix:get m row ? res
   ]
   report res
 end
@@ -18,7 +32,7 @@ end
 to-report matrix:get-sparse-column [m column row-inds]
   let res []
   foreach row-inds [
-    set res lput matrix:get m column ? res 
+    set res lput matrix:get m column ? res
   ]
   report res
 end
@@ -35,7 +49,7 @@ to-report matrix:sparse-submatrix [m rows columns]
     let i ?
     let r []
     foreach columns [
-      set r lput matrix:get m i ? r 
+      set r lput matrix:get m i ? r
     ]
     set list-res lput r list-res
   ]
@@ -57,7 +71,7 @@ to-report matrix:min [m]
       if v < mi [set mi v set imin i set jmin j]
       set j j + 1
     ]
-    set i i + 1 
+    set i i + 1
   ]
   report (list mi (list imin jmin))
 ;  let rows matrix:to-row-list m
