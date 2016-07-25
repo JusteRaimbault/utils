@@ -12,8 +12,7 @@ object Convolution {
     * @param matrix
     * @return
     */
-   /*def moran_convol(matrix: Array[Array[T]],quantity: Quantity[T]): Double = {
-     val conf = matrix.map { row => row.map(quantity).toArray }.toArray
+   def moran_convol(conf: Array[Array[Double]]): Double = {
      val n = conf.length
      val flatConf = conf.flatten
      val popMean = flatConf.sum / flatConf.length
@@ -27,7 +26,7 @@ object Convolution {
    def spatialWeights(n: Int): Array[Array[Double]] = {
      Array.tabulate(n, n) { (i, j) => if (i == n / 2 && j == n / 2) 0.0 else 1 / Math.sqrt((i - n / 2) * (i - n / 2) + (j - n / 2) * (j - n / 2)) }
    }
-*/
+
 
    /**
     * Mean distance using fast convolution.
@@ -35,14 +34,13 @@ object Convolution {
     * @param matrix
     * @return
     */
-   /*def distance_convol(matrix: Matrix[T],quantity: Quantity[T]): Double = {
+   def distance_convol(conf: Array[Array[Double]]): Double = {
      val conf = matrix.map { row => row.map(quantity).toArray }.toArray
      val totPop = conf.flatten.sum
      val dmat = distanceMatrix(2 * conf.length - 1)
      val conv = Convolution.convolution2D(conf, dmat)
      math.sqrt(math.Pi) / (conf.length * totPop * totPop) * MathArrays.ebeMultiply(conv.flatten, conf.flatten).sum
    }
-*/
 
    /**
     * Distance kernel
@@ -50,11 +48,10 @@ object Convolution {
     * @param n
     * @return
     */
-/*
+
    def distanceMatrix(n: Int): Array[Array[Double]] = {
      Array.tabulate(n, n) { (i, j) => Math.sqrt((i - n / 2) * (i - n / 2) + (j - n / 2) * (j - n / 2)) }
    }
-*/
 
 
 

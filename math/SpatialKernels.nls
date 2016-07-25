@@ -25,3 +25,10 @@ to apply-poisson-kernel [r0 k0 patch-variable-name center-patch]
     run (word "set " patch-variable-name " " patch-variable-name " + k0 * exp (- (distance center-patch) / r0)")
   ]
 end
+
+;; spatial smoothing with gaussian kernel
+to spatial-smoothing [sigma origin-var destination-var]
+  ask patches [
+    run (word "set " destination-var " sum [" origin-var " * exp((-(distance myself)^ 2)/ (2 * (sigma ^ 2)))] of (patches in-radius " (2 * sigma) ")") 
+  ]
+end

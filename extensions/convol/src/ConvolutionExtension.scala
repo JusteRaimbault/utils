@@ -5,6 +5,8 @@ import api.ScalaConversions._  // implicits
 class ConvolutionExtension extends api.DefaultClassManager {
   def load(manager: api.PrimitiveManager) {
     manager.addPrimitive("convolution", Convol)
+    manager.addPrimitive("moran", Moran)
+    manager.addPrimitive("distance", Distance)
     manager.addPrimitive("test", Test)
   }
 }
@@ -22,6 +24,28 @@ object Convol extends api.DefaultReporter {
      y.toLogoList
   }
 }
+
+/**
+*/
+object Moran extends api.DefaultReporter {
+  override def getSyntax =reporterSyntax(Array(ListType), NumberType)
+
+  def report(args: Array[api.Argument], context: api.Context): AnyRef = {
+     val x = args(0).getList.map(_.asInstanceOf[org.nlogo.api.LogoList].toArray.map(_.asInstanceOf[Double])).toArray
+     Convolution.moran_convol(x)
+  }
+}
+
+
+object Distance extends api.DefaultReporter {
+  override def getSyntax =reporterSyntax(Array(ListType), NumberType)
+
+  def report(args: Array[api.Argument], context: api.Context): AnyRef = {
+     val x = args(0).getList.map(_.asInstanceOf[org.nlogo.api.LogoList].toArray.map(_.asInstanceOf[Double])).toArray
+     Convolution.distance_convol(x)
+  }
+}
+
 
 object Test extends api.DefaultReporter {
 

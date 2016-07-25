@@ -147,11 +147,13 @@ to lists-csv-export [lists header separator filename]
   ;;rq: we suppose that export is done in same order !!!
   let first-line ""
   foreach header [set first-line word first-line ? if ? != last header [set first-line word first-line separator]]
+  let row-length length header
   print-in-file filename first-line
   foreach lists [
     let line ""
     let lst last ?
-    foreach ? [set line word line ? if ? != lst [set line word line separator]]
+    let j 1
+    foreach ? [set line word line ? if j != row-length [set line word line separator] set j j + 1]
     print-in-file filename line
   ] 
 end
