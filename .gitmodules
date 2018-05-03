@@ -1,0 +1,6 @@
+[submodule "extensions/morphology"]
+	path = extensions/morphology
+	url = github.com:JusteRaimbault/nl-spatialmorphology.git
+[submodule "extensions/context/nl-context"]
+	path = extensions/context/nl-context
+	url = git@github.com:JusteRaimbault/nl-context.git
