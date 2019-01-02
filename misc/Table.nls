@@ -7,7 +7,7 @@
 
 ;;
 ; Get table values as list
-to-report table-values [table]
+to-report utils:table:table-values [table]
   let res []
   foreach table:keys table [
     set res lput table:get table ? res 
