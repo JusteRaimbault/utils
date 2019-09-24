@@ -2,6 +2,7 @@
 ;; Basic Stat functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+
 to-report utils:statistics:summary [x]
   report (word "length = " length x "\n mean = " mean x "\n median = " median x "\n min = " min x "\n max = " max x)
 end
@@ -36,6 +37,18 @@ end
 
 
 
+
+;;
+; generic rank-size exponent and r-squared
+to-report utils:statistics:rank-size-hierarchy [x]
+  if max x = 0 and min x = 0 [report [0 0]]
+  let xx remove 0 x
+  let sol matrix:regress matrix:from-column-list (list (map [? -> log ? 10] sort-by [[?1 ?2] -> ?1 > ?2] xx) (map [? -> log ? 10] utils:list:seq 1 length xx 1))
+  report (list (last first sol) (first last sol))
+end
+
+
+
 ;;
 ; pearson correlation
 to-report utils:statistics:pearson-correlation [x y]
@@ -45,6 +58,25 @@ to-report utils:statistics:pearson-correlation [x y]
   report mean (utils:list:times-element-wise xx yy) / (sx * sy)
 end
 
+
+;;
+; note : not sure the netlogo standard-dev primitive use the biased or unbiased estimator of variance - should not change much
+; defaults at 95% confidence level
+to-report utils:statistics:pearson-correlation-ci [x y]
+  let n length x
+  let rho utils:statistics:pearson-correlation x y
+  let rhomin tanh ((atanh rho) - 1.96 / ((sqrt n)*(sqrt (n - 3))))
+  let rhomax tanh ((atanh rho) + 1.96 / ((sqrt n)*(sqrt (n - 3))))
+  report (list rho rhomin rhomax)
+end
+
+to-report tanh [z]
+  report  (exp (2 * z) - 1)/(exp (2 * z) + 1)
+end
+
+to-report atanh [r]
+  report 0.5 * ln ((1 + r)/(1 - r))
+end
 
 ;;
 ; covariance
