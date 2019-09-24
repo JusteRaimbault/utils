@@ -50,6 +50,17 @@ end
 
 
 ;;
+; entropy for x >= 0
+to-report utils:statistics:entropy [x]
+  let xx remove 0 x
+  let xtot sum xx
+  if xtot = 0 [report 0]
+  report (- 1 / (ln length x) * sum (map [? -> ? / xtot * ln (? / xtot)] xx))
+end
+
+
+
+;;
 ; pearson correlation
 to-report utils:statistics:pearson-correlation [x y]
   let mx mean x let xx map [? -> ? - mx] x let my mean y let yy map [? -> ? - my] y
